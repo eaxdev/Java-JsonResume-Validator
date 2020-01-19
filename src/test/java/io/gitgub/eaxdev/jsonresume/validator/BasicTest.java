@@ -36,8 +36,8 @@ public class BasicTest {
         JsonResume jsonResume = new JsonResume(json);
         JsonResumeParseException jsonResumeParseException = assertThrows(JsonResumeParseException.class, jsonResume::deserialize);
         String actual = jsonResumeParseException.getMessage();
-        String expected1 = "JSON is not valid. Reasons (2): Value `badEmail` is not correct. Must be a valid e-mail address. Example: admin@mycomp.org";
-        String expected2 = "Value `badEmail` is not correct. Must be a valid e-mail address. Example: admin@mycomp.org";
+        String expected1 = "Value `badEmail` is not correct. Must be a valid e-mail address. Example: admin@mycomp.org";
+        String expected2 = "Value `badUrl` is not correct. Must be a valid URL. Example: https://site.com";
         assertTrue(actual.contains(expected1));
         assertTrue(actual.contains(expected2));
     }
