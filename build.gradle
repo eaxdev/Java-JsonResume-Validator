@@ -1,8 +1,20 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+    }
+}
+
 plugins {
     id 'java'
+    id 'maven'
+    id 'signing'
 }
 
 group 'io.github.eaxdev'
+archivesBaseName = 'jsonresume-validator'
 version '0.0.1'
 
 repositories {
@@ -26,4 +38,41 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+apply plugin: 'com.bmuschko.nexus'
+
+modifyPom {
+    project {
+        name 'JsonResume Validator'
+        description 'Java library to validate JsonResume by schema: https://jsonresume.org/schema/'
+        url 'https://github.com/eaxdev/Java-JsonResume-Validator'
+        inceptionYear '2020'
+
+        scm {
+            url 'https://github.com/eaxdev/Java-JsonResume-Validator'
+            connection 'scm:https://github.com/eaxdev/Java-JsonResume-Validator.git'
+            developerConnection 'scm:git://github.com/eaxdev/Java-JsonResume-Validator.git'
+        }
+
+        licenses {
+            license {
+                name 'MIT License'
+                url 'https://raw.githubusercontent.com/eaxdev/Java-JsonResume-Validator/master/LICENSE'
+            }
+        }
+
+        developers {
+            developer {
+                id 'eaxdev'
+                name 'RomanSA'
+                email 'eaxdev@ya.ru'
+            }
+        }
+    }
+}
+
+extraArchive {
+    sources = false
+    tests = true
 }
