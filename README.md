@@ -6,7 +6,22 @@ Java library to validate JSON resumes to ensure that they are according to the [
 
 > For more information on JSON resumes, please see the [official JSON Resume initiative](https://jsonresume.org)
 
-## Usage
+## Using
+For Maven-based projects, add the following to your POM file (the dependency are available at Maven Central):
+```xml
+<dependency>
+    <groupId>io.github.eaxdev</groupId>
+    <artifactId>jsonresume-validator</artifactId>
+    <version>{{current_latest_version}}</version>
+</dependency>
+```
+If you using Gradle, add this in your `build.gradle`:
+```
+compile group: 'io.github.eaxdev', name: 'jsonresume-validator', version: '{{current_latest_version}}'
+```
+
+And then use it in your code:
+
 ```java
 public class JsonResumeValidatorExample {
     public static void main(String[] args) throws JsonResumeParseException {
