@@ -4,6 +4,13 @@ plugins {
     id 'signing'
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
+}
+
 group 'io.github.eaxdev'
 archivesBaseName = 'jsonresume-validator'
 version '0.0.1'
@@ -31,24 +38,13 @@ test {
     useJUnitPlatform()
 }
 
-task sourceJar(type: Jar) {
-    classifier "sources"
+jar {
+    from sourceSets.main.output
     from sourceSets.main.allJava
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier "javadoc"
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives jar
-    archives sourceJar
-    archives javadocJar
-}
-
 signing {
-    sign configurations.archives
+    sign publishing.publications
 }
 
 publishing {
@@ -60,35 +56,6 @@ publishing {
             version version
 
             from components.java
-
-            pom.withXml {
-                def pomFile = file("${project.buildDir}/generated-pom.xml")
-                writeTo(pomFile)
-                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
-                artifact(pomAscFile) {
-                    classifier = null
-                    extension = 'pom.asc'
-                }
-            }
-
-            artifact(sourceJar) {
-                classifier = 'sources'
-            }
-            artifact(javadocJar) {
-                classifier = 'javadoc'
-            }
-
-            project.tasks.signArchives.signatureFiles.each {
-                artifact(it) {
-                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
-                    if (matcher.find()) {
-                        classifier = matcher.group(1)
-                    } else {
-                        classifier = null
-                    }
-                    extension = 'jar.asc'
-                }
-            }
         }
     }
     repositories {
@@ -107,10 +74,6 @@ model {
         destination = file("$buildDir/generated-pom.xml")
     }
     tasks.publishMavenJavaPublicationToMavenLocal {
-        dependsOn project.tasks.signArchives
-    }
-    tasks.publishMavenJavaPublicationToMavenRepository {
-        dependsOn project.tasks.signArchives
     }
 }
 
