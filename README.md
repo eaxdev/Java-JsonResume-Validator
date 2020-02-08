@@ -1,7 +1,7 @@
 # Java JsonResume Validator
 [![Build Status](https://github.com/eaxdev/Java-JsonResume-Validator/workflows/build/badge.svg)](https://github.com/eaxdev/Java-JsonResume-Validator/actions)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/eaxdev/Java-JsonResume-Validator/master/LICENSE)
-![Maven Central](https://img.shields.io/maven-central/v/io.github.eaxdev/jsonresume-validator)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.eaxdev/jsonresume-validator.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.eaxdev%22%20AND%20a:%22jsonresume-validator%22)
 
 Java library to validate JSON resumes to ensure that they are according to the [defined schema](https://jsonresume.org/schema/)
 
