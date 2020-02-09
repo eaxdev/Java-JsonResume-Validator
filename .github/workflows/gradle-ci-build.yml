@@ -29,6 +29,6 @@ jobs:
         env:
           RELEASE_VERSION: ${GITHUB_REF:11}
         uses: eskatos/gradle-command-action@v1
-          with:
-            gradle-version: current
-            arguments: publish -Pversion=$RELEASE_VERSION -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+        with:
+          gradle-version: current
+          arguments: publish -Pversion=$RELEASE_VERSION -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
