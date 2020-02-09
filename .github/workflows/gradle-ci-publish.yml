@@ -16,7 +16,7 @@ jobs:
           java-version: 8
 
       - name: Prepare to publish
-        run: echo ${{secrets.GPG_KEY_CONTENTS}} | base64 -d > ${{secrets.SIGNING_SECRET_KEY_RING_FILE}}
+        run: echo ${{secrets.GPG_KEY_CONTENTS}} | base64 -d > /secret.gpg
 
       - name: Publish with Gradle
         env:
@@ -24,4 +24,4 @@ jobs:
         uses: eskatos/gradle-command-action@v1
         with:
           gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=${{secrets.SIGNING_SECRET_KEY_RING_FILE}} -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -Pversion=$RELEASE_VERSION -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+          arguments: publish -Psigning.secretKeyRingFile=/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -Pversion=$RELEASE_VERSION -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
