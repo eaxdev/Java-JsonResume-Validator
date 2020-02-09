@@ -23,5 +23,5 @@ jobs:
           arguments: build -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
 
       - name: Deploy with Gradle
-        if: github.event.release == 'published'
-        run: echo $GITHUB_REF
+        #if: github.event.release == 'published'
+        run: echo github.event_name
