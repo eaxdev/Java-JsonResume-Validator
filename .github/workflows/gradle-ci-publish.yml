@@ -16,7 +16,9 @@ jobs:
           java-version: 8
 
       - name: Prepare to publish
-        run: echo ${{secrets.GPG_KEY_CONTENTS}} | base64 -d > /secret.gpg
+        run: |
+          echo 'dGVzdA==' | base64 -d > /secret.gpg
+          cat /secret.gpg
 
       - name: Publish with Gradle
         env:
