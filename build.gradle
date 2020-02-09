@@ -13,7 +13,6 @@ java {
 
 group 'io.github.eaxdev'
 archivesBaseName = 'jsonresume-validator'
-version '0.0.1'
 
 repositories {
     mavenCentral()

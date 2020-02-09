@@ -21,3 +21,7 @@ jobs:
         with:
           gradle-version: current
           arguments: build -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+
+      - name: Deploy with Gradle
+        if: github.event.action == 'published' && startsWith($TAG, 'v')
+        run: echo 'deploy'
