@@ -3,6 +3,9 @@ name: build
 on:
   push:
     branches:
+      - master
+      - dev
+      - testing
   pull_request:
 
 jobs:
