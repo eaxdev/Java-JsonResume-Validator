@@ -18,7 +18,7 @@ jobs:
       - name: Prepare to publish
         run: |
           echo 'dGVzdA==' | base64 -d > secret.gpg
-          cat /secret.gpg
+          cat secret.gpg
 
       - name: Publish with Gradle
         env:
