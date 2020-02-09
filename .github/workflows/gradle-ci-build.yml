@@ -4,9 +4,6 @@ on:
   push:
     branches:
   pull_request:
-  release:
-    types:
-      - published
 
 jobs:
   build:
@@ -23,15 +20,3 @@ jobs:
         with:
           gradle-version: current
           arguments: build -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
-
-      - name: Deploy with Gradle
-        if: github.event_name == 'release' && github.event.action == 'published'
-        env:
-          RELEASE_VERSION: ${GITHUB_REF:11}
-        uses: eskatos/gradle-command-action@v1
-        run: echo ${{secrets.GPG_KEY_CONTENTS}} | base64 -d > ${{secrets.SIGNING_SECRET_KEY_RING_FILE}}
-        with:
-          gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=${{secrets.SIGNING_SECRET_KEY_RING_FILE}} -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -Pversion=$RELEASE_VERSION -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
-
-SIGNING_PASSWORD:
