@@ -24,4 +24,4 @@ jobs:
 
       - name: Deploy with Gradle
         #if: github.event.release == 'published'
-        run: echo github.event_name
+        run: ${{ github }}
