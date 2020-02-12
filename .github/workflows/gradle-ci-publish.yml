@@ -19,9 +19,11 @@ jobs:
         run: |
           echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > secret.gpg
           echo "::set-env name=RELEASE_VERSION::${GITHUB_REF:11}"
+          echo "::set-env name=SONATYPE_USERNAME::${{secrets.SONATYPE_USERNAME}}"
+          echo "::set-env name=SONATYPE_PASSWORD::${{secrets.SONATYPE_PASSWORD}}"
 
       - name: Publish with Gradle
         uses: eskatos/gradle-command-action@v1
         with:
           gradle-version: current
-          arguments: test publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+          arguments: test publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}}
