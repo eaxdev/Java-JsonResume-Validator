@@ -18,11 +18,11 @@ jobs:
       - name: Prepare to publish
         run: |
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
-          --output $HOME/secret.gpg publish_key.gpg
+          --output secret.gpg publish_key.gpg
           echo "::set-env name=RELEASE_VERSION::${GITHUB_REF:11}"
 
       - name: Publish with Gradle
         uses: eskatos/gradle-command-action@v1
         with:
           gradle-version: current
-          arguments: test publish -Psigning.secretKeyRingFile=$HOME/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+          arguments: test publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
