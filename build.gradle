@@ -69,14 +69,6 @@ publishing {
     }
 }
 
-model {
-    tasks.generatePomFileForMavenJavaPublication {
-        destination = file("$buildDir/generated-pom.xml")
-    }
-    tasks.publishMavenJavaPublicationToMavenLocal {
-    }
-}
-
 def customizePom(pom) {
     pom.withXml {
         def root = asNode()
