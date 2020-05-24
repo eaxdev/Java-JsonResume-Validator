@@ -18,7 +18,7 @@ For Maven-based projects, add the following to your POM file (the dependency are
 ```
 If you using Gradle, add this in your `build.gradle`:
 ```
-compile group: 'io.github.eaxdev', name: 'jsonresume-validator', version: '0.0.1'
+implementation: 'io.github.eaxdev:jsonresume-validator:0.0.1'
 ```
 
 And then use it in your code:
