@@ -13,12 +13,12 @@ For Maven-based projects, add the following to your POM file (the dependency are
 <dependency>
     <groupId>io.github.eaxdev</groupId>
     <artifactId>jsonresume-validator</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 If you using Gradle, add this in your `build.gradle`:
 ```
-implementation: 'io.github.eaxdev:jsonresume-validator:0.0.1'
+implementation: 'io.github.eaxdev:jsonresume-validator:0.0.2'
 ```
 
 And then use it in your code:
