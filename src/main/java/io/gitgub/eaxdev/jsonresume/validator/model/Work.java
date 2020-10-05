@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 public class Work extends Period {

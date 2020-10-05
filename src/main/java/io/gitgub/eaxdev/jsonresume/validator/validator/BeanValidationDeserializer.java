@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class BeanValidationDeserializer extends BeanDeserializer {
 
-    private final static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
     private final Validator validator = factory.getValidator();
 
@@ -30,7 +30,7 @@ public class BeanValidationDeserializer extends BeanDeserializer {
 
     private void validate(final Object instance) {
         final Set<ConstraintViolation<Object>> violations = validator.validate(instance);
-        if (violations.size() > 0) {
+        if (!violations.isEmpty()) {
             final String message = "JSON is not valid. Reasons (" + violations.size() + "): ";
             final String errorMessages = violations.stream()
                     .map(v -> "Value `" + v.getInvalidValue() + "` is not correct. " + v.getMessage())

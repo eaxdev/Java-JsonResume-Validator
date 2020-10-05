@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BasicTest {
+class BasicTest {
 
     @Test
     void basicUsage() throws IOException, JsonResumeParseException {
